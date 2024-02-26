@@ -27,9 +27,7 @@ def delete_file(file_path):
 
 def move_file(old_path, new_path):
     try:
-        if old_path.lower().replace('\\', '/') != new_path.lower().replace('\\', '/'):
-            delete_file(new_path)
-            shutil.move(old_path, new_path)
+        shutil.move(old_path, new_path)
         return True, ''
     except Exception as e:
         error_info = f' Move File: {old_path}\n To: {new_path} \n Error: {e}\n{traceback.format_exc()}\n'
@@ -41,10 +39,6 @@ def move_file(old_path, new_path):
 def copy_file(old_path, new_path):
     for _ in range(3):
         try:
-            if not os.path.exists(old_path):
-                return False, f'不存在: {old_path}'
-            elif old_path.lower() != new_path.lower():
-                delete_file(new_path)
             shutil.copy(old_path, new_path)
             return True, ''
         except Exception as e:

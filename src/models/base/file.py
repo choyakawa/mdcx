@@ -17,6 +17,8 @@ def delete_file(file_path):
             elif not os.path.exists(file_path):
                 break
             os.remove(file_path)
+        error_info = f' Delete File: {file_path}\n'
+        signal.add_log(error_info)
         return True, ''
     except Exception as e:
         error_info = f' Delete File: {file_path}\n Error: {e}\n{traceback.format_exc()}'

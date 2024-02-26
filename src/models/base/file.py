@@ -17,7 +17,7 @@ def delete_file(file_path):
             elif not os.path.exists(file_path):
                 break
             os.remove(file_path)
-        error_info = f' Delete File: {file_path}\n'
+        error_info = f' Delete File: {file_path}'
         signal.add_log(error_info)
         return True, ''
     except Exception as e:
@@ -29,6 +29,8 @@ def delete_file(file_path):
 
 def move_file(old_path, new_path):
     try:
+        error_info = f' Move File: {old_path} -> {new_path}'
+        signal.add_log(error_info)
         shutil.move(old_path, new_path)
         return True, ''
     except Exception as e:
@@ -41,6 +43,8 @@ def move_file(old_path, new_path):
 def copy_file(old_path, new_path):
     for _ in range(3):
         try:
+            error_info = f' Copy File: {old_path} -> {new_path}'
+            signal.add_log(error_info)
             shutil.copy(old_path, new_path)
             return True, ''
         except Exception as e:
